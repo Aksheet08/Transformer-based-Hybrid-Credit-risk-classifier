@@ -26,7 +26,7 @@ Hybrid-Credit-risk-classifier-model-using-Transformers/
 ├── predict_loan.py                   # Loan prediction script (XGBoost)
 ├── app.py                            # Streamlit web application
 ├── credit_risk_analysis.png          # Comprehensive visualizations
-├── accepted_2007_to_2018Q4.csv      # Raw data (place here to run)
+├── Dataset link                      # Kaggle dataset link 
 ├── xgboost_model.pkl                 # Trained XGBoost model
 ├── logistic_regression_model.pkl     # Trained Logistic Regression model
 └── feature_scaler.pkl               # Feature scaler for preprocessing
