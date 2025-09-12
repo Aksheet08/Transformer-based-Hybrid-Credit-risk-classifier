@@ -1,0 +1,4 @@
+Dataset Link : https://www.kaggle.com/datasets/wordsforthewise/lending-club
+
+use the following csv file as the dataset
+"accepted_2007_to_2018Q4.csv"
