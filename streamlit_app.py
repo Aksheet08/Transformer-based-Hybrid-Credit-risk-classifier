@@ -69,11 +69,25 @@ st.markdown("""
         margin-top: 0;
     }
     .metric-card {
-        background-color: #f8f9fa;
+        background-color: #ffffff;
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem 0;
         border-left: 4px solid #1f77b4;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .metric-card h4 {
+        color: #2d3748;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    .metric-card ul {
+        color: #4a5568;
+        margin: 0;
+    }
+    .metric-card li {
+        margin-bottom: 0.25rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -138,6 +152,7 @@ def main():
     # Header
     st.markdown('<div class="main-header">🏦 Credit Risk Assessment</div>', unsafe_allow_html=True)
     st.markdown("### AI-Powered Loan Default Risk Prediction")
+    st.markdown("**Made by Aksheet Ranjan**")
     st.markdown("---")
     
     # Load model
@@ -291,10 +306,7 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Model comparison
-            st.subheader("Model Comparison")
-            st.plotly_chart(create_comparison_chart(xgb_prob, lr_prob), use_container_width=True)
-            
+           
             # Detailed breakdown
             with st.expander("📈 Detailed Analysis"):
                 st.write("**Key Risk Factors:**")
@@ -414,10 +426,12 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center; color: #666;'>
-        <p>🏦 Credit Risk Assessment Tool | Built with Streamlit & XGBoost</p>
+        <p>🏦 Credit Risk Assessment Tool | Built with SentenceTransformer & XGBoost</p>
         <p>⚠️ For educational purposes only. Not for actual lending decisions.</p>
     </div>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
+
+
