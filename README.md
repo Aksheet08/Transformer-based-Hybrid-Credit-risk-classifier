@@ -1,5 +1,10 @@
 # Hybrid-Credit-risk-classifier-model-using-Transformers
 
+## 🌐 Live Demo
+
+🚀 Experience the interactive Credit Risk Classifier web app live:  
+👉 [Open Live App](https://hybrid-credit-risk-classifier-model-using-transformers-aksheet.streamlit.app/)
+
 
 ## 🚀 Credit Risk Classifier – Project Overview
 
