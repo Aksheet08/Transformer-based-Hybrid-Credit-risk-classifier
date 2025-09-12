@@ -1,13 +1,26 @@
 # Hybrid-Credit-risk-classifier-model-using-Transformers
 
-A hybrid machine learning model for credit risk assessment that combines structured financial data with NLP features from borrower descriptions using SentenceTransformers.
 
-• Architected Multimodal ML pipeline using 177k+ loan samples from Lending Club Dataset, combining
-structured data with NLP features from borrower text using SentenceTransformers.
-• Trained XGBoost and Logistic Regression models on combined structured features and text embeddings to
-predict loan default risk, achieving 78.5% ROC-AUC and 0.495 F1-score.
-• Built and deployed an interactive web app using Streamlit with real-time risk assessment dashboard,risk
-categorization and automated lending recommendations
+## 🚀 Credit Risk Classifier – Project Overview
+
+- **Architected a Multimodal Machine Learning Pipeline**  
+  Processed 177k+ loan samples from the Lending Club Dataset by combining:
+    - Structured financial data (e.g., loan amount, annual income).
+    - NLP features extracted from borrower text fields using **SentenceTransformers**.
+
+- **Built Predictive Models for Loan Default Risk**  
+  Trained and evaluated:
+    - **XGBoost Classifier** (best performing).
+    - **Logistic Regression** (baseline model).  
+  Achieved:
+    - ROC-AUC: **78.5%**
+    - F1-Score: **0.495**
+
+- **Developed Interactive Web App (Streamlit)**  
+  Features:
+    - Real-time risk assessment dashboard.
+    - Risk categorization (Low / Medium / High Risk).
+    - Automated lending recommendations based on model inference.
 
 
 ## 📊 Results Achieved
