@@ -342,7 +342,6 @@ def main():
             <h4>🎯 Model Performance</h4>
             <ul>
                 <li>ROC-AUC: <strong>78.5%</strong></li>
-                <li>F1-Score: <strong>49.5%</strong></li>
                 <li>Training Data: <strong>177K+ loans</strong></li>
             </ul>
         </div>
@@ -433,5 +432,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
