@@ -155,7 +155,7 @@ class CreditRiskClassifier:
         return df_processed
     
     def extract_nlp_features(self, df, max_samples=50000):
-        """Extract NLP features using SentenceTransformers (optimized)
+        """Extract NLP features using SentenceTransformers 
         Combines desc and emp_title (if available) and averages embeddings to keep dim fixed.
         """
         print("Extracting NLP features...")
@@ -372,9 +372,7 @@ class CreditRiskClassifier:
         print("Visualizations saved as 'credit_risk_analysis.png'")
     
     def train_models(self, X_train, X_test, y_train, y_test):
-        """Train XGBoost and Logistic Regression models with optimization and tuning
-        Uses early stopping and a small parameter search to maximize ROC-AUC under time constraints.
-        """
+        """Train XGBoost and Logistic Regression models with optimization and tuning"""
         print("Training models...")
         
         # Prepare validation split for early stopping
@@ -465,7 +463,7 @@ class CreditRiskClassifier:
                     print(f"Early stopping: no improvement in recent trials. Best AUC: {best_auc:.4f}")
                     break
             
-            # Safety break if tuning exceeds ~40 minutes (to keep under 1 hour total)
+           
             if time.time() - start_time > 40 * 60:
                 print("Tuning time limit reached; stopping parameter search.")
                 break
@@ -671,3 +669,4 @@ if __name__ == "__main__":
     if feature_importance is not None:
         print("\nTop 10 Most Important Features:")
         print(feature_importance.head(10).to_string(index=False))
+
