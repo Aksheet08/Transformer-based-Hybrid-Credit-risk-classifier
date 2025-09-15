@@ -20,7 +20,6 @@
     - **Logistic Regression** (baseline model).  
   Achieved:
     - ROC-AUC: **78.5%**
-    - F1-Score: **0.495**
 
 - **Developed Interactive Web App (Streamlit)**  
   Features:
@@ -30,8 +29,8 @@
 
 
 ## 📊 Results Achieved
-- **XGBoost Model**: ROC-AUC 0.785, F1-Score 0.495 (Final Optimized)
-- **Logistic Regression**: ROC-AUC 0.781, F1-Score 0.382
+- **XGBoost Model**: ROC-AUC 0.785 (Final Optimized)
+- **Logistic Regression**: ROC-AUC 0.781
 - **Training Time**: ~8 minutes (with hyperparameter tuning)
 - **Dataset**: 177,363 loans from Lending Club dataset (2007-2018)
 - **Features**: 300 selected (from 457 total: structured + NLP)
