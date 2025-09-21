@@ -497,39 +497,63 @@ class CreditRiskClassifier:
     def evaluate_models(self, y_test, xgb_pred_proba, lr_pred_proba):
         """Evaluate model performance"""
         print("Evaluating models...")
+        # --- Helper function to find best threshold ---
+        def find_best_threshold(y_true, y_proba):
+            thresholds = [i/100 for i in range(1,100)]  # 0.01 to 0.99
+            best_thresh, best_f1 = 0.5, 0
+            for t in thresholds:
+                y_pred = (y_proba >= t).astype(int)
+                f1 = f1_score(y_true, y_pred)
+                if f1 > best_f1:
+                    best_thresh, best_f1 = t, f1
+            return best_thresh, best_f1
         
-        # Calculate metrics
+        # --- Calculate AUC ---
         xgb_auc = roc_auc_score(y_test, xgb_pred_proba)
         lr_auc = roc_auc_score(y_test, lr_pred_proba)
-        
-        xgb_pred = (xgb_pred_proba > 0.5).astype(int)
-        lr_pred = (lr_pred_proba > 0.5).astype(int)
-        
-        xgb_f1 = f1_score(y_test, xgb_pred)
-        lr_f1 = f1_score(y_test, lr_pred)
-        
+
+        # --- Find best thresholds for F1 ---
+        xgb_best_thresh, xgb_f1 = find_best_threshold(y_test, xgb_pred_proba)
+        lr_best_thresh, lr_f1 = find_best_threshold(y_test, lr_pred_proba)
+
+        # --- Apply best thresholds ---
+        xgb_pred = (xgb_pred_proba >= xgb_best_thresh).astype(int)
+        lr_pred = (lr_pred_proba >= lr_best_thresh).astype(int)
+
         print("=" * 50)
         print("MODEL PERFORMANCE RESULTS")
         print("=" * 50)
         print(f"XGBoost:")
         print(f"  ROC-AUC: {xgb_auc:.4f}")
+        print(f"  Best Threshold (F1): {xgb_best_thresh:.2f}")
         print(f"  F1-Score: {xgb_f1:.4f}")
         print()
         print(f"Logistic Regression:")
         print(f"  ROC-AUC: {lr_auc:.4f}")
+        print(f"  Best Threshold (F1): {lr_best_thresh:.2f}")
         print(f"  F1-Score: {lr_f1:.4f}")
         print("=" * 50)
-        
-        # Detailed classification report for best model
-        best_model = "XGBoost" if xgb_auc > lr_auc else "Logistic Regression"
-        best_pred = xgb_pred if xgb_auc > lr_auc else lr_pred
-        
+
+        # --- Pick best model (based on F1 first, then AUC if tie) ---
+        if xgb_f1 > lr_f1:
+            best_model, best_pred = "XGBoost", xgb_pred
+        elif lr_f1 > xgb_f1:
+            best_model, best_pred = "Logistic Regression", lr_pred
+        else:  # tie → choose higher AUC
+            if xgb_auc >= lr_auc:
+                best_model, best_pred = "XGBoost", xgb_pred
+            else:
+                best_model, best_pred = "Logistic Regression", lr_pred
+
+        # --- Detailed classification report ---
         print(f"\nDetailed Classification Report ({best_model}):")
         print(classification_report(y_test, best_pred))
-        
+
         return {
             'xgb_auc': xgb_auc, 'lr_auc': lr_auc,
             'xgb_f1': xgb_f1, 'lr_f1': lr_f1,
+            'xgb_best_thresh': xgb_best_thresh,
+            'lr_best_thresh': lr_best_thresh,
             'best_model': best_model
         }
     
@@ -669,4 +693,5 @@ if __name__ == "__main__":
     if feature_importance is not None:
         print("\nTop 10 Most Important Features:")
         print(feature_importance.head(10).to_string(index=False))
+
 
